@@ -16,7 +16,7 @@ from pathlib import Path
 
 # ---------------------------------------------------------------------------
 # Data dictionary (generated from the portal PDF by tools/parse_dictionary.py;
-# provenance: data_dictionary_meta.json — currently V5.0 / doc 1.0.5)
+# provenance: data_dictionary_meta.json — currently V6.0 / doc 1.0.6)
 # ---------------------------------------------------------------------------
 
 _DICT_PATH = Path(__file__).parent / "data_dictionary.json"
