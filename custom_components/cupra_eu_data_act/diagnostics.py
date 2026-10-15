@@ -119,4 +119,24 @@ async def async_get_config_entry_diagnostics(
             for item in cached[:3]
         ]
 
+    # Add all uncurated fields with their actual values
+    uncurated_names = (
+        set(field_coverage(points)["uncurated_fields"])
+        if points else set()
+    )
+
+    payload["uncurated_field_values"] = [
+        {
+            "field_name": dp.field_name,
+            "value": dp.value,
+            "raw_value": dp.raw_value,
+            "unit": dp.unit,
+            "type": dp.type_hint,
+            "description": dp.description,
+            "timestamp": dp.timestamp_utc,
+        }
+        for dp in points.values()
+        if dp.field_name in uncurated_names
+    ]    
+    
     return async_redact_data(payload, TO_REDACT)
